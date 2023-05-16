@@ -2,31 +2,31 @@
 @model Simple_Web_App.Pages.Games.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Library";
 }
 
-<h1>Index</h1>
+<h1>Library</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="text-decoration-none">Create New +</a>
 </p>
-<table class="table">
+<table class="table" id="gameTable">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Game[0].Title)
+                <a asp-page="Index" asp-route-sortOrder="@ViewBag.TitleSortParam">Title</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Game[0].RelaseDate)
+                <a asp-page="Index" asp-route-sortOrder="@ViewBag.ReleaseDateSortParam">Release Date</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Game[0].Genre)
             </th>
-            <th>
+            <th data-column="Platforms">
                 @Html.DisplayNameFor(model => model.Game[0].Platforms)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Game[0].Price)
+                <a asp-page="Index" asp-route-sortOrder="@ViewBag.PriceSortParam">Price</a>
             </th>
             <th></th>
         </tr>
@@ -34,25 +34,25 @@
     <tbody>
 @foreach (var item in Model.Game) {
         <tr>
-            <td>
+            <td class="align-middle">
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
-            <td>
+            <td class="align-middle">
                 @Html.DisplayFor(modelItem => item.RelaseDate)
             </td>
-            <td>
+            <td class="align-middle">
                 @Html.DisplayFor(modelItem => item.Genre)
             </td>
-            <td>
+            <td class="align-middle">
                 @Html.DisplayFor(modelItem => item.Platforms)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
+            <td class="align-middle">
+                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.ID" class="btn btn-dark">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID" class="btn btn-dark">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }
